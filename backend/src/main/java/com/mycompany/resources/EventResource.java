@@ -3,7 +3,6 @@ package com.mycompany.resources;
 import com.mycompany.api.Event;
 import com.mycompany.core.EventRepository;
 
-import io.dropwizard.jersey.params.LongParam;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -28,8 +27,8 @@ public class EventResource {
 
     @GET
     @Path("{id}")
-    public Event event(@PathParam("id") LongParam id) {
-        return repository.findById(id.get())
+    public Event event(@PathParam("id") Long id) {
+        return repository.findById(id)
                 .orElseThrow(() ->
                         new WebApplicationException("Event not found", 404));
     }
@@ -41,16 +40,16 @@ public class EventResource {
 
     @PUT
     @Path("{id}")
-    public Event update(@PathParam("id") LongParam id, Event event) {
-        return repository.update(id.get(), event)
+    public Event update(@PathParam("id") Long id, Event event) {
+        return repository.update(id, event)
                 .orElseThrow(() ->
                         new WebApplicationException("Event not found", 404));
     }
 
     @DELETE
     @Path("{id}")
-    public Response delete(@PathParam("id") LongParam id) {
-        repository.delete(id.get());
+    public Response delete(@PathParam("id") Long id) {
+        repository.delete(id);
         return Response.ok().build();
     }
 

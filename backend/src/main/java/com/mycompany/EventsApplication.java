@@ -2,7 +2,11 @@ package com.mycompany;
 
 import com.mycompany.core.DummyEventRepository;
 import com.mycompany.core.EventRepository;
+import com.mycompany.core.dynamoDB.ProductRepository;
+import com.mycompany.core.dynamoDB.ProductRepositoryImp;
 import com.mycompany.resources.EventResource;
+import com.mycompany.resources.ProductResource;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -20,19 +24,21 @@ public class EventsApplication extends Application<EventsConfiguration> {
         return "Events";
     }
 
-    @Override
-    public void initialize(final Bootstrap<EventsConfiguration> bootstrap) {
-        // TODO: application initialization
-    }
 
     @Override
     public void run(final EventsConfiguration configuration,
                     final Environment environment) {
         environment.getObjectMapper().setDateFormat(new SimpleDateFormat(configuration.getDateFormat()));
 
-        EventRepository repository = new DummyEventRepository();
-        EventResource eventResource = new EventResource(repository);
+        EventRepository repoEvent = new DummyEventRepository();
+        ProductRepository repoProd = new ProductRepositoryImp();
+            
+        EventResource eventResource = new EventResource(repoEvent);
+        ProductResource productResource = new ProductResource(repoProd);
+
         environment.jersey().register(eventResource);
+        environment.jersey().register(productResource);
+
     }
 
 }

@@ -3,8 +3,9 @@ package com.mycompany.core;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
 import com.mycompany.api.Event;
+
+import io.dropwizard.util.Resources;
 
 import java.io.IOException;
 import java.net.URL;

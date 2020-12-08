@@ -1,13 +1,14 @@
 package com.mycompany.dto;
 
+import java.util.List;
 import java.util.Set;
 
 public class ProductCatalogDTO {
 
-    private Integer id;
+    private Long id;
     private String title;
     private String ISBN;
-    private Set<String> bookAuthors;
+    private List<String> bookAuthors;
     private String someProp;
 
     public ProductCatalogDTO(){
@@ -15,11 +16,11 @@ public class ProductCatalogDTO {
     }
     
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +40,11 @@ public class ProductCatalogDTO {
         ISBN = iSBN;
     }
 
-    public Set<String> getBookAuthors() {
+    public List<String> getBookAuthors() {
         return bookAuthors;
     }
 
-    public void setBookAuthors(Set<String> bookAuthors) {
+    public void setBookAuthors(List<String> bookAuthors) {
         this.bookAuthors = bookAuthors;
     }
 
